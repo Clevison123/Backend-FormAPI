@@ -52,9 +52,8 @@ namespace FormAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            ResponseFormPersonDto user = await _service.DeleteAsync(id);
-
-            return Ok(user);
+            await _service.DeleteAsync(id);
+            return NoContent();
         }
     }
 }

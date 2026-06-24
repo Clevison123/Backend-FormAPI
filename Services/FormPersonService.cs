@@ -38,6 +38,7 @@ namespace FormAPI.Services
 
             return new ResponseFormPersonDto
             {
+                Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 Phone = user.Phone,
@@ -51,6 +52,7 @@ namespace FormAPI.Services
 
             return users.Select(user => new ResponseFormPersonDto
             {
+                Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 Phone = user.Phone,
@@ -69,6 +71,7 @@ namespace FormAPI.Services
 
             return new ResponseFormPersonDto
             {
+                Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 Phone = user.Phone,
@@ -105,6 +108,7 @@ namespace FormAPI.Services
 
             return new ResponseFormPersonDto
             {
+                Id = userToUpdate.Id,
                 Name = userToUpdate.Name,
                 Email = userToUpdate.Email,
                 Phone = userToUpdate.Phone,
@@ -112,24 +116,15 @@ namespace FormAPI.Services
             };
         }
 
-        public async Task<ResponseFormPersonDto> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            var user = await _context.FormPeople
-                .FirstOrDefaultAsync(x => x.Id == id);
+            var user = await _context.FormPeople.FindAsync(id);
 
             if (user == null)
                 throw new Exception("Usuário não encontrado");
 
             _context.FormPeople.Remove(user);
             await _context.SaveChangesAsync();
-
-            return new ResponseFormPersonDto
-            {
-                Name = user.Name,
-                Email = user.Email,
-                Phone = user.Phone,
-                Address = user.Address
-            };
         }
     }
 }
