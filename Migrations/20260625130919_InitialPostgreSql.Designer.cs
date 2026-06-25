@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FormAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260621115202_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260625130919_InitialPostgreSql")]
+    partial class InitialPostgreSql
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
